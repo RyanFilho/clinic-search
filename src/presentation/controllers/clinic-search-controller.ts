@@ -1,14 +1,16 @@
 import { Controller } from '@/presentation/controllers/ports/controller';
 import { HttpRequest } from '@/presentation/controllers/ports/http-request';
 import { HttpResponse } from '@/presentation/controllers/ports/http-response';
+import { Query } from '@/usecases/datatypes/clinic copy';
 import { UseCase } from '@/usecases/ports/use-case';
 
 export class ClinicSearchController implements Controller {
   constructor(private useCase: UseCase) {}
   async handle(request: HttpRequest): Promise<HttpResponse> {
     try {
-      const token = request.token;      
-      const clinics = await this.useCase.perform(token);
+      const token = request.token;
+      const query: Query = request.query;
+      const clinics = await this.useCase.perform(query, token);
       return {
         statusCode: 200,
         body: clinics,

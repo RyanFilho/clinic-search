@@ -1,4 +1,5 @@
-export interface HttpRequest {
+export interface HttpRequest {  
   token?: string;
+  query?: any,
   body: any;
 }
