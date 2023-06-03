@@ -1,7 +1,6 @@
-export interface Clinic {
+export interface IClinic {
   clinicName: string;
   stateCode: string;
-  opening: string;
   from: string;
   to: string;
 }

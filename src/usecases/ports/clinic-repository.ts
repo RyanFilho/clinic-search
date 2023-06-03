@@ -1,6 +1,7 @@
-import { Clinic } from '@/usecases/datatypes/clinic';
+import { IDentalClinic } from '../datatypes/interface-dental-clinic';
+import { IVetClinic } from '../datatypes/interface-vet-clinic';
 
-export interface ClinicRepository {
-  listDentalClinics(): Promise<Clinic[]>;
-  listVetClinics(): Promise<Clinic[]>;
+export interface IClinicRepository {
+  listDentalClinics(): Promise<IDentalClinic[]>;
+  listVetClinics(): Promise<IVetClinic[]>;
 }

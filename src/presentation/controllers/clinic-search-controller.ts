@@ -1,7 +1,7 @@
 import { Controller } from '@/presentation/controllers/ports/controller';
 import { HttpRequest } from '@/presentation/controllers/ports/http-request';
 import { HttpResponse } from '@/presentation/controllers/ports/http-response';
-import { Query } from '@/usecases/datatypes/clinic copy';
+import { IQuery } from '@/usecases/datatypes/interface-query';
 import { UseCase } from '@/usecases/ports/use-case';
 
 export class ClinicSearchController implements Controller {
@@ -9,7 +9,7 @@ export class ClinicSearchController implements Controller {
   async handle(request: HttpRequest): Promise<HttpResponse> {
     try {
       const token = request.token;
-      const query: Query = request.query;
+      const query: IQuery = request.query;
       const clinics = await this.useCase.perform(query, token);
       return {
         statusCode: 200,
@@ -27,9 +27,10 @@ export class ClinicSearchController implements Controller {
           },
         };
       }
+      
       return {
         statusCode: 500,
-        body: error,
+        body: error.message,
       };
     }
   }
